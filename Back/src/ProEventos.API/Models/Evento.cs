@@ -18,5 +18,7 @@ namespace ProEventos.API.Models
     public string Lote { get; set; }
 
     public string ImagemURL { get; set; }
+
+    public DateTime DataEvento { get; set; }
   }
 }
