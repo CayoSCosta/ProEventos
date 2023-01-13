@@ -20,23 +20,48 @@
   <thead class="table-dark">
     <tr>
       <th class="text-center" scope="col">#</th>
-      <th class="text-center" scope="col">Imagem</th>
+      <th>
+        <button
+          type="button"
+          class="btn btn-outline-light btn-sm"
+          (click)="alterarImagem()"
+        >
+          {{ !mostrarImagem ? "mostrar" : "ocultar" }}
+        </button>
+      </th>
       <th class="text-center" scope="col">Tema</th>
+      <th class="text-center" scope="col">Local</th>
       <th class="text-center" scope="col">Data</th>
       <th class="text-center" scope="col">Qtd Pessoas</th>
       <th class="text-center" scope="col">Lote</th>
       <th class="text-center" scope="col">Opções</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th class="text-center" scope="row">1</th>
-      <td class="text-center">A</td>
-      <td class="text-center">B</td>
-      <td class="text-center">C</td>
-      <td class="text-center">D</td>
-      <td class="text-center">E</td>
-      <td class="text-center">F</td>
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let evento of eventos">
+      <th class="text-center" scope="row">{{ evento.eventoId }}</th>
+      <td>
+        <img
+          *ngIf="mostrarImagem"
+          src="/assets/{{ evento.imagemURL }}"
+          alt="imagem"
+          [style.width.px]="larguraImagem"
+          [style.margin.px]="margemImagem"
+        />
+      </td>
+      <td class="text-center">{{ evento.tema }}</td>
+      <td class="text-center">{{ evento.local }}</td>
+      <td class="text-center">{{ evento.dataEvento }}</td>
+      <td class="text-center">{{ evento.qtdPessoas }}</td>
+      <td class="text-center">{{ evento.lote }}</td>
+      <td class="text-center"></td>
     </tr>
   </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum Evento encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>

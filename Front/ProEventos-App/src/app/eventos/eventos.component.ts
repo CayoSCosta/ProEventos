@@ -8,19 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: any;
+  public eventos: any = [];
+  larguraImagem: number = 50;
+  margemImagem: number = 2;
+  mostrarImagem: boolean = true;
+
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getEventos();
   }
 
-  public getEventos(): void {
 
+  alterarImagem() {
+    this.mostrarImagem = !this.mostrarImagem;
+  }
+
+  public getEventos(): void {
     this.http.get('https://localhost:5001/api/eventos').subscribe(
       response => this.eventos = response,
-      error => console.log(error),
-      // complete
+      error => console.log(error)
     );
   }
 
