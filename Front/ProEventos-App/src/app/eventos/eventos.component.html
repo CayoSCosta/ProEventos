@@ -2,24 +2,28 @@
 
 <hr />
 
-<form class="row row-cols-lg-auto g-3 align-items-center" action="">
+<div class="row row-cols-lg-auto g-3 align-items-center">
   <div>
     <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="buscar" />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar"
+        [(ngModel)]="filtroLista"
+      />
     </div>
   </div>
-  <div>
+  <!-- <div>
     <button type="submit" class="btn btn-outline-success">Buscar</button>
-  </div>
-</form>
-
-<hr />
+  </div> -->
+</div>
+<br />
+<!-- <h3>Filtro: {{ filtroLista }}</h3> -->
 
 <table class="table">
   <thead class="table-dark">
     <tr>
-      <th class="text-center" scope="col">#</th>
       <th>
         <button
           type="button"
@@ -29,6 +33,7 @@
           {{ !exibirImagem ? "Exibir" : "Ocultar" }}
         </button>
       </th>
+      <th class="text-center" scope="col">#</th>
       <th class="text-center" scope="col">Tema</th>
       <th class="text-center" scope="col">Local</th>
       <th class="text-center" scope="col">Data</th>
@@ -38,8 +43,7 @@
     </tr>
   </thead>
   <tbody *ngIf="eventos && eventos.length">
-    <tr *ngFor="let evento of eventos">
-      <th class="text-center" scope="row">{{ evento.eventoId }}</th>
+    <tr *ngFor="let evento of eventosTratados">
       <td>
         <img
           [collapse]="!exibirImagem"
@@ -50,12 +54,18 @@
           [style.margin.px]="margemImagem"
         />
       </td>
+      <th class="text-center" scope="row">{{ evento.eventoId }}</th>
       <td class="text-center">{{ evento.tema }}</td>
       <td class="text-center">{{ evento.local }}</td>
       <td class="text-center">{{ evento.dataEvento }}</td>
       <td class="text-center">{{ evento.qtdPessoas }}</td>
       <td class="text-center">{{ evento.lote }}</td>
-      <td class="text-center"></td>
+      <td class="text-center">
+        <button type="button" class="btn btn-primary btn-sm me-2">
+          Editar
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      </td>
     </tr>
   </tbody>
   <tfoot *ngIf="!eventos.length">
@@ -66,3 +76,5 @@
     </tr>
   </tfoot>
 </table>
+
+<!-- {{ eventos | json }} -->

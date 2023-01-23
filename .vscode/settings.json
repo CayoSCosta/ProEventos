@@ -1,0 +1,11 @@
+{
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "ProEventos",
+      "database": "${workspaceFolder:PROEVENTOS}/Back/src/ProEventos.API/ProEventos.db"
+    }
+  ]
+}
